@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from PIL import ImageTk,Image
 tasks = [] 
 count = 1
 
@@ -49,7 +50,13 @@ def delete():
 #driver code
 if __name__ == "__main__":
     gui = Tk()
-    gui.configure(background="hot pink1") #background color
+    # ================== CHANGES HERE START========================
+    canv = Canvas(gui, width=500, height=600, bg='white')
+    canv.place(relx=0,rely=0, anchor=CENTER)
+    img = ImageTk.PhotoImage(Image.open("background.jpg"))  # PIL solution
+    canv.create_image(500, 400, anchor=CENTER, image=img)
+    # ================== CHANGES HERE END ========================
+    
     gui.title("To Do List") #title of GUI window
     gui.geometry("250x300") #window size
     entertask = Label(gui, text="Enter your task", bg="hot pink1") #label
